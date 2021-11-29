@@ -22,7 +22,7 @@ class Constants(BaseConstants):
     verifications = [[2, 3, 4], [3, 4, 5], [4, 5, 6], [5, 6, 7], [6, 7, 8]]  # Balls to be verified.
     test_questions_solution = [1, 2, 3, 3, 3]  # Correct answers to the 4 test questions. TO UPDATE
     test_questions_required = 4  # Number of correct test questions required to proceed with experiment.
-    scoring_rule_factor = 5
+    scoring_rule_factor = 3
 
     # Implied inputs
     num_rounds = num_balls + len(verifications[0])
