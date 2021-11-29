@@ -1,5 +1,4 @@
 from otree.api import *
-import pytz
 
 
 author = 'Lars Wittrock'
