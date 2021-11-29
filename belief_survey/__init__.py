@@ -215,6 +215,25 @@ class Instructions(Page):
     form_model = 'player'
     form_fields = ['test1', 'test2', 'test3', 'test4', 'test5', 'sr_button_clicks']
 
+    @staticmethod
+    def vars_for_template(player: Player):
+        def scoring_rule(belief, urn):
+            if urn == 'red':
+                error_red = (100-belief)/100
+                score = Constants.scoring_rule_factor - Constants.scoring_rule_factor * math.pow(error_red, 2)
+            else:
+                error_blue = belief/100
+                score = Constants.scoring_rule_factor - Constants.scoring_rule_factor * math.pow(error_blue, 2)
+            return score
+
+        example_60_red = scoring_rule(60, 'red')
+        example_60_blue = scoring_rule(60, 'blue')
+
+        return{
+            'example_60_blue': example_60_blue,
+            'example_60_red': example_60_red
+        }
+
     # Correct answers for test questions
     @staticmethod
     def before_next_page(player: Player, timeout_happened):
