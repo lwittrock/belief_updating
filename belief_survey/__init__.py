@@ -226,16 +226,16 @@ class Instructions(Page):
                 score = Constants.scoring_rule_factor - Constants.scoring_rule_factor * math.pow(error_blue, 2)
             return score
 
-        example_60_red = sr_urn(60, 'red')
-        example_60_blue = sr_urn(60, 'blue')
+        example_60_red = "%.2f" % sr_urn(60, 'red')
+        example_60_blue = "%.2f" % sr_urn(60, 'blue')
 
         def sr_report(belief, report):
             score = belief/100 * sr_urn(report, 'red') + (1-belief/100) * sr_urn(report, 'blue')
             return score
 
-        example_60_60 = round(sr_report(60, 60), 2)
-        example_60_10 = round(sr_report(60, 10), 2)
-        example_60_100 = round(sr_report(60, 100), 2)
+        example_60_60 = "%.2f" % round(sr_report(60, 60), 2)
+        example_60_10 = "%.2f" % round(sr_report(60, 10), 2)
+        example_60_100 = "%.2f" % round(sr_report(60, 100), 2)
 
         return{
             'example_60_blue': example_60_blue,
