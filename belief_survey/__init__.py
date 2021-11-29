@@ -22,7 +22,7 @@ class Constants(BaseConstants):
     verifications = [[2, 3, 4], [3, 4, 5], [4, 5, 6], [5, 6, 7], [6, 7, 8]]  # Balls to be verified.
     test_questions_solution = [1, 2, 3, 3, 3]  # Correct answers to the 4 test questions. TO UPDATE
     test_questions_required = 4  # Number of correct test questions required to proceed with experiment.
-    scoring_rule_factor = 3
+    scoring_rule_factor = 5
 
     # Implied inputs
     num_rounds = num_balls + len(verifications[0])
@@ -233,9 +233,9 @@ class Instructions(Page):
             score = belief/100 * sr_urn(report, 'red') + (1-belief/100) * sr_urn(report, 'blue')
             return score
 
-        example_60_60 = sr_report(60, 60)
-        example_60_10 = sr_report(60, 10)
-        example_60_100 = sr_report(60, 100)
+        example_60_60 = round(sr_report(60, 60), 2)
+        example_60_10 = round(sr_report(60, 10), 2)
+        example_60_100 = round(sr_report(60, 100), 2)
 
         return{
             'example_60_blue': example_60_blue,
