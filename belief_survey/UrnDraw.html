@@ -1,0 +1,45 @@
+{% block title %}
+
+    The urn is being selected
+
+{% endblock %}
+
+
+{% block content %}
+
+    <div>
+    <p>
+        The main part of this study starts now. From now on your decisions affect your bonus payment.
+    </p>
+    <p>
+        As explained in the instructions, there are 2 urns, as displayed below.
+        One of these urns is now randomly selected for the remainder of this study.
+    </p>
+    <p>
+        On the following pages you will be shown some information about the selected urn and asked to make a guess.
+    </p>
+    </div>
+
+
+    <div>
+        <center>
+        <img src="{{ static 'img/red_or_blue_urn_selected.png' }}" style="width:40%;"/>
+        </center>
+    </div>
+
+
+
+
+
+    <br>
+
+    <style>
+        .next {float: right; margin: 40px auto;}
+    </style>
+    <button class="btn btn-primary next">Next</button>
+
+
+{% endblock %}
+
+
+

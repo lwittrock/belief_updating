@@ -1,0 +1,23 @@
+{{ block title }}
+    Statement of Consent
+{{ endblock }}
+{{ block content }}
+
+    <p>
+        In this study some of the questions will be basic demographic characteristics, such as gender and education.
+        Your data will remain anonymous in accordance with GDPR (European Union personal data protection law).
+    </p>
+    <p>
+        If you give us your consent, you may click on "I agree".
+    </p>
+    <p>
+        {{ formfields }}
+    </p>
+
+    <style>
+        .next {float: right; margin: 40px auto;}
+    </style>
+    <button class="btn btn-primary next">Next</button>
+
+
+{{ endblock }}

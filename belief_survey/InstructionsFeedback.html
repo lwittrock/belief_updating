@@ -1,0 +1,42 @@
+{% block title %}
+    Instructions
+{% endblock %}
+
+{% block content %}
+
+    <p>
+
+        INSERT CORRECT ANSWERS HERE.
+
+    </p>
+
+
+    <p>
+        You answered {{ player.test_correct }} questions correctly.
+    </p>
+
+
+    {% if player.test_correct >= Constants.test_questions_required %}
+        <p>
+            You can now proceed to the study.
+        </p>
+        <style>
+            .next {float: right; margin: 40px auto;}
+        </style>
+        <button class="btn btn-primary next">Next</button>
+
+
+    {% else %}
+
+        <p>
+            Unfortunately, {{ Constants.test_questions_required }} correct answers were required to continue the study.
+            This marks the end of the study.
+        </p>
+        <p>
+            To leave the study, simply close your browser or the active window.
+        </p>
+
+    {% endif %}
+
+
+{% endblock %}

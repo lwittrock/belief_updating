@@ -1,0 +1,198 @@
+{% block script %}
+
+    <!-- JS for button show/hide instructions - from: https://www.w3schools.com/howto/howto_js_toggle_hide_show.asp -->
+    <script>
+    var info_button_clicks = 0;
+
+    function myFunction() {
+        var x = document.getElementById("background");
+        if (x.style.display === "none") {
+            x.style.display = "block";
+        } else {
+            x.style.display = "none";
+        }
+
+        info_button_clicks += 1
+        document.getElementById("info_button_clicks").value = info_button_clicks;
+    }
+
+
+    </script>
+
+    <!-- JS for slider -->
+	<script src="{{ static 'js/slider.js' }}"></script>
+
+
+{% endblock %}
+
+{% block title %}
+	Round {{ subsession.round_number }}
+{% endblock %}
+
+{% block content %}
+
+    <p>
+        <b>Background:</b>
+    </p>
+    <input type="hidden" name="info_button_clicks" id="info_button_clicks" value="0"/>
+
+    <button type="button" onclick="myFunction()">Show/hide instructions</button>
+
+    <div style="display:none" id="background">
+        <br>
+        <p>
+        There are two urns, one red and one blue, as displayed below. One of the two urns was chosen in the beginning.
+        It will remain the same throughout this study. You do not know which of the 2 urns was selected.
+        <div>
+            <img src="{{ static 'img/red_or_blue_urn.png' }}" style="width:30%;"/>
+        </div>
+        <br>
+        <p>
+            The 4 balls from the selected urn were added to the black box displayed below.
+            You do not know the color of the urn that was selected.
+            The 4 added balls are therefore displayed in grey.
+            But these are either 3 red balls and 1 blue ball or 3 blue balls and 1 red ball.
+            The black box also contains 6 other balls that do not come from the urn.
+            A ball is drawn from the black box. The color of the ball is shown to you and
+            the ball is put back into the box with the other balls.
+        </p>
+        <div>
+            <img src="{{ static 'img/black_box.png' }}" style="width:30%;"/>
+        </div>
+        </p>
+    </div>
+
+    <br><br>
+    <p>
+        <b>History:</b>
+    <br>
+
+    <style>
+        #t1 tr td  {
+            border:2px solid;
+            width:70px;
+            text-align:center;
+        }
+    </style>
+
+
+    <table id="t1">
+    <tr>
+        <td>Ball 1</td>
+        <td>Ball 2</td>
+        <td>Ball 3</td>
+        <td>Ball 4</td>
+        <td>Ball 5</td>
+        <td>Ball 6</td>
+        <td>Ball 7</td>
+        <td>Ball 8</td>
+        <td>Ball 9</td>
+    </tr>
+    <tr style="height: 70px">
+        <td>
+            <img src="{{ static pic1 }}" width="40" height="auto"/>
+        </td>
+        <td>
+            <img src="{{ static pic2 }}" width="40" height="auto"/>
+        </td>
+        <td>
+            <img src="{{ static pic3 }}" width="40" height="auto"/>
+        </td>
+        <td>
+            <img src="{{ static pic4 }}" width="40" height="auto"/>
+        </td>
+        <td>
+            <img src="{{ static pic5 }}" width="40" height="auto"/>
+        </td>
+        <td>
+            <img src="{{ static pic6 }}" width="40" height="auto"/>
+        </td>
+        <td>
+            <img src="{{ static pic7 }}" width="40" height="auto"/>
+        </td>
+        <td>
+            <img src="{{ static pic8 }}" width="40" height="auto"/>
+        </td>
+        <td>
+            <img src="{{ static pic9 }}" width="40" height="auto"/>
+        </td>
+    </tr>
+    </table>
+
+    </p>
+
+    <p>
+    <b>
+        New Information:
+    </b>
+    <br>
+    {% if player.round_number in player.participant.verification_rounds %}
+        The {{ prev_ball }} ball that was drawn last round was one of the
+
+        {% if player.verification == 'true' %}
+            4 <b>informative</b> balls.
+        {% else %}
+            6 <b>uninformative</b> balls.
+        {% endif %}
+
+    {% else %}
+        A <b>{{ player.ball }}</b> ball was drawn from the black box. It is put back into the box with the other balls.
+    {% endif %}
+
+    </p>
+
+    <p>
+        <b>Question:</b>
+        <br>
+        What do you think are the chances (in %) that the <span style="color:#ff0000;">RED URN</span>&nbsp;was picked in the beginning?
+    </p>
+
+    <!-- SLIDER -->
+
+    <!-- Slider styling -->
+    <link href="{{ static 'css/slider.css' }}" rel="stylesheet">
+
+    <!-- Input from slider -->
+    <input type="hidden" id="belief" name="belief" value="" />
+
+    <!-- Slider placement -->
+	<table id="dec1">
+		<tr style="height: 85px">
+			<td><span class="input-group-text" id="slidermin"></span></td>
+			<td width="80%">
+				<div id="before" onclick="show_slider(event)"></div>
+				<input type="range" list="tickmarks" name="belief_slider" id="belief_slider" value="0" class="slidertd form-range" oninput="showVal1(this.value)" onchange="showVal1(this.value)">
+                <datalist id="tickmarks">
+                    <option value="0" label="0%"></option>
+                    <option value="10"></option>
+                    <option value="20"></option>
+                    <option value="30"></option>
+                    <option value="40"></option>
+                    <option value="50" label="50%"></option>
+                    <option value="60"></option>
+                    <option value="70"></option>
+                    <option value="80"></option>
+                    <option value="90"></option>
+                    <option value="100" label="100%"></option>
+                </datalist>
+			</td>
+			<td><span class="input-group-text" id="slidermax"></span></td>
+		</tr>
+
+		<tr style="height: 30px">
+			<td id="show_belief" colspan="3" style="text-align: center"><b><span id="cval1"></span></b></td>
+		</tr>
+	</table>
+
+
+    <!-- Next button -->
+    <style>
+        .next {float: right; margin: 40px auto;}
+    </style>
+    <button class="btn btn-primary next">Next</button>
+
+
+{% endblock %}
+
+
+

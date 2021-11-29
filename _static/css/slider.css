@@ -1,0 +1,118 @@
+#t1 tr td {
+  border: 2px solid black;
+  text-align: center;
+}
+
+/* Style for Slider used in BeliefInput */
+
+/* From slider https://gitlab.com/gr0ssmann/otree_slider */
+#dec1 input {
+  min-height: 50px;
+}
+#dec1 {
+  margin-top: 40px;
+  margin-bottom: 40px;
+  border: none;
+}
+#belief_slider {
+  display: none;
+}
+.input-group-text {
+  padding: 20px;
+}
+.slidertd {
+  width: 100%;
+}
+#show_belief {
+  color: #fff;
+}
+#before {
+  display: block;
+  height: 12px;
+  width: 100%;
+  background: #000000;
+  opacity: 0.3;
+}
+
+/* Custom slider 'input type=range' created with http://danielstern.ca/range.css/#/ by Lars Wittrock*/
+input[type=range] {
+  width: 100%;
+  margin: 13.8px 0;
+  background-color: transparent;
+  -webkit-appearance: none;
+}
+input[type=range]:focus {
+  outline: none;
+}
+input[type=range]::-webkit-slider-runnable-track {
+  background: rgba(0, 0, 0, 0.3);
+  border: 0.2px solid #010101;
+  border-radius: 1.3px;
+  width: 100%;
+  height: 8.4px;
+  cursor: pointer;
+}
+input[type=range]::-webkit-slider-thumb {
+  margin-top: -14px;
+  width: 16px;
+  height: 36px;
+  background: #ffffff;
+  border: 1px solid #000000;
+  border-radius: 3px;
+  cursor: pointer;
+  -webkit-appearance: none;
+}
+input[type=range]:focus::-webkit-slider-runnable-track {
+  background: #171717;
+}
+input[type=range]::-moz-range-track {
+  background: rgba(0, 0, 0, 0.3);
+  border: 0.2px solid #010101;
+  border-radius: 1.3px;
+  width: 100%;
+  height: 8.4px;
+  cursor: pointer;
+}
+input[type=range]::-moz-range-thumb {
+  width: 16px;
+  height: 36px;
+  background: #ffffff;
+  border: 1px solid #000000;
+  border-radius: 3px;
+  cursor: pointer;
+}
+input[type=range]::-ms-track {
+  background: transparent;
+  border-color: transparent;
+  border-width: 14.8px 0;
+  color: transparent;
+  width: 100%;
+  height: 8.4px;
+  cursor: pointer;
+}
+input[type=range]::-ms-fill-lower {
+  background: #000000;
+  border: 0.2px solid #010101;
+  border-radius: 2.6px;
+}
+input[type=range]::-ms-fill-upper {
+  background: rgba(0, 0, 0, 0.3);
+  border: 0.2px solid #010101;
+  border-radius: 2.6px;
+}
+input[type=range]::-ms-thumb {
+  width: 16px;
+  height: 36px;
+  background: #ffffff;
+  border: 1px solid #000000;
+  border-radius: 3px;
+  cursor: pointer;
+  margin-top: 0px;
+  /*Needed to keep the Edge thumb centred*/
+}
+input[type=range]:focus::-ms-fill-lower {
+  background: rgba(0, 0, 0, 0.3);
+}
+input[type=range]:focus::-ms-fill-upper {
+  background: #171717;
+}

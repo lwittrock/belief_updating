@@ -1,0 +1,19 @@
+{{ block title }}
+    End of Study
+{{ endblock }}
+{{ block content }}
+
+    This is the end of this study. Thank you for your participation.
+    Below you can find an overview of your earnings.
+
+    <br><br>
+
+    Your bonus payment is: {{ player.participant.payoff }}.
+    <br>
+    Your total earnings from this study are: {{ player.participant.payoff_plus_participation_fee }}
+
+    <br><br>
+
+    INSERT SOME TRANSITION BACK TO PROLIFIC.
+
+{{ endblock }}

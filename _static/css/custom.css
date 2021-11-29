@@ -1,0 +1,12 @@
+.next {
+    float: right;
+    margin: 40px auto;
+    }
+
+.back {
+    float: left;
+    margin: 40px auto;
+    }
+
+.tab {display: none;
+    }
