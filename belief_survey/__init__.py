@@ -217,21 +217,32 @@ class Instructions(Page):
 
     @staticmethod
     def vars_for_template(player: Player):
-        def scoring_rule(belief, urn):
+        def sr_urn(report, urn):
             if urn == 'red':
-                error_red = (100-belief)/100
+                error_red = (100-report)/100
                 score = Constants.scoring_rule_factor - Constants.scoring_rule_factor * math.pow(error_red, 2)
             else:
-                error_blue = belief/100
+                error_blue = report/100
                 score = Constants.scoring_rule_factor - Constants.scoring_rule_factor * math.pow(error_blue, 2)
             return score
 
-        example_60_red = scoring_rule(60, 'red')
-        example_60_blue = scoring_rule(60, 'blue')
+        example_60_red = sr_urn(60, 'red')
+        example_60_blue = sr_urn(60, 'blue')
+
+        def sr_report(belief, report):
+            score = belief/100 * sr_urn(report, 'red') + (1-belief/100) * sr_urn(report, 'blue')
+            return score
+
+        example_60_60 = sr_report(60, 60)
+        example_60_10 = sr_report(60, 10)
+        example_60_100 = sr_report(60, 100)
 
         return{
             'example_60_blue': example_60_blue,
-            'example_60_red': example_60_red
+            'example_60_red': example_60_red,
+            'example_60_60': example_60_60,
+            'example_60_10': example_60_10,
+            'example_60_100': example_60_100
         }
 
     # Correct answers for test questions

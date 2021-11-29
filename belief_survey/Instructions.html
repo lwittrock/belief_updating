@@ -138,7 +138,7 @@
                 <li>If the BOX was RED:
                 <ul>
                     <li>your error is (100%-60%) = 40%</li>
-                    <li>your bonus is 5-5∙(40%)² = 4.20 Euros</li>
+                    <li>your bonus is {{ Constants.scoring_rule_factor }}-{{ Constants.scoring_rule_factor }}∙(40%)² = {{example_60_red}} Euros</li>
                 </ul>
                 </li>
                 <li>If the BOX was BLUE:
@@ -152,11 +152,11 @@
             As we have already mentioned, you should expect to maximize your earnings by reporting what you
             actually think are the chances of a RED BALL.
             <br><br>
-            <strong>EXAMPLE:</strong> If you actually think that the chances are 60% that a RED BOX was picked, then:
+            <strong>EXAMPLE:</strong> If you actually think that the chances are 60% that the RED URN was picked, then:
             <ul>
-                <li>By reporting 60%, you will make on average <strong>3.80 Euros</strong>.</li>
-                <li>By reporting 10%, you will make on average <strong>2.55 Euros</strong>.</li>
-                <li>By reporting 100%, you will make on average <strong>3.00 Euros</strong>.</li>
+                <li>By reporting 60%, you will make on average <strong>{{example_60_60}} Euros</strong>.</li>
+                <li>By reporting 10%, you will make on average <strong>{{example_60_10}} Euros</strong>.</li>
+                <li>By reporting 100%, you will make on average <strong>{{example_60_100}} Euros</strong>.</li>
             </ul>
             <br>
             As you see <strong>you maximize your earning by reporting exactly 60%</strong>.
