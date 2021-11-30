@@ -20,12 +20,33 @@ class Constants(BaseConstants):
     prob_box = 0.5  # distribution of non-urn balls (i.e. uninformative ball distribution 3-3)
     num_balls = 9  # number of balls shown - not including verifications
     verifications = [[2, 3, 4], [3, 4, 5], [4, 5, 6], [5, 6, 7], [6, 7, 8]]  # Balls to be verified.
-    test_questions_solution = [1, 2, 3, 3, 3]  # Correct answers to the 4 test questions. TO UPDATE
-    test_questions_required = 4  # Number of correct test questions required to proceed with experiment.
     scoring_rule_factor = 3
 
     # test questions
-    test1_label = 'test123' # 1. What are the chances that the red urn is randomly selected?
+    test1_label = '1. What are the chances that the red urn is randomly selected?'
+    test1_choices = [[1, '50%'], [2, '30%'], [3, '90%'], [4, '0%']]
+
+    test2_label = '2. How many balls in the black box are from the selected urn?'
+    test2_choices = [[1, '2'], [2, '4'], [3, '6'], [4, '8']]
+
+    test3_label = '3. How many balls in the black box are NOT from the selected urn?'
+    test3_choices = [[1, '2'], [2, '4'], [3, '6'], [4, '8']]
+
+    test4_label = '4. A blue ball is drawn from the black box. What does that mean?'
+    test4_choices = [
+        [1, 'The urn selected in the beginning is more likely to be red.'],
+        [2, 'This does not tell me anything about the urn selected in the beginning.'],
+        [3, 'The urn selected in the beginning is more likely to be blue.']
+    ]
+    test5_label = '5. You see a red ball with a question mark written on it. What does that mean?'
+    test5_choices = [
+        [1, 'It is unclear if the ball is red or blue.'],
+        [2, 'The ball came from one of the uninformative ones'],
+        [3, 'It is unclear if the ball is informative or uninformative.'],
+        [4, 'The ball came from one of the informative ones.']
+    ]
+    test_questions_solution = [1, 2, 3, 3, 3]  # Correct answers to the 4 test questions. TO UPDATE
+    test_questions_required = 4  # Number of correct test questions required to proceed with experiment.
 
     # Implied inputs
     num_rounds = num_balls + len(verifications[0])
@@ -43,47 +64,23 @@ class Player(BasePlayer):
     # Variables for instruction test
     test1 = models.IntegerField(doc='Test question 1',
                                 label=Constants.test1_label,
-                                choices=[
-                                    [1, '50%'],
-                                    [2, '30%'],
-                                    [3, '90%'],
-                                    [4, '0%']
-                                ],
+                                choices=Constants.test1_choices,
                                 widget=widgets.RadioSelect)
     test2 = models.IntegerField(doc='Test question 2',
-                                label='2. How many balls in the black box are from the selected urn?',
-                                choices=[
-                                    [1, '2'],
-                                    [2, '4'],
-                                    [3, '6'],
-                                    [4, '8']
-                                ],
+                                label=Constants.test2_label,
+                                choices=Constants.test2_choices,
                                 widget=widgets.RadioSelect)
     test3 = models.IntegerField(doc='Test question 3',
-                                label='3. How many balls in the black box are NOT from the selected urn?',
-                                choices=[
-                                    [1, '2'],
-                                    [2, '4'],
-                                    [3, '6'],
-                                    [4, '8']
-                                ],
+                                label=Constants.test3_label,
+                                choices=Constants.test3_choices,
                                 widget=widgets.RadioSelect)
-    test4 = models.IntegerField(doc='Test question 3',
-                                label='4. A blue ball is drawn from the black box. What does that mean?',
-                                choices=[
-                                    [1, 'The urn selected in the beginning is more likely to be red.'],
-                                    [2, 'This does not tell me anything about the urn selected in the beginning.'],
-                                    [3, 'The urn selected in the beginning is more likely to be blue.']
-                                ],
+    test4 = models.IntegerField(doc='Test question 4',
+                                label=Constants.test4_label,
+                                choices=Constants.test4_choices,
                                 widget=widgets.RadioSelect)
     test5 = models.IntegerField(doc='Test question 5',
-                                label='5. You see a red ball with a question mark written on it. What does that mean?',
-                                choices=[
-                                    [1, 'It is unclear if the ball is red or blue.'],
-                                    [2, 'The ball came from one of the uninformative ones'],
-                                    [3, 'It is unclear if the ball is informative or uninformative.'],
-                                    [4, 'The ball came from one of the informative ones.']
-                                ],
+                                label=Constants.test5_label,
+                                choices=Constants.test5_choices,
                                 widget=widgets.RadioSelect)
 
     test_correct = models.IntegerField(doc='Number of correct test questions')
@@ -284,6 +281,22 @@ class InstructionsFeedback(Page):
     def is_displayed(player):
         return player.round_number == 1
 
+    def vars_for_template(player: Player):
+
+        # Returns correct solution for each question
+        test1_solution = Constants.test1_choices[Constants.test_questions_solution[0]-1][1]
+        test2_solution = Constants.test1_choices[Constants.test_questions_solution[1]-1][1]
+        test3_solution = Constants.test1_choices[Constants.test_questions_solution[2]-1][1]
+        test4_solution = Constants.test1_choices[Constants.test_questions_solution[3]-1][1]
+        test5_solution = Constants.test1_choices[Constants.test_questions_solution[4]-1][1]
+
+        return {
+            'test1_solution': test1_solution,
+            'test2_solution': test2_solution,
+            'test3_solution': test3_solution,
+            'test4_solution': test4_solution,
+            'test5_solution': test5_solution
+        }
 
 class UrnDraw(Page):
     @staticmethod
