@@ -285,10 +285,10 @@ class InstructionsFeedback(Page):
 
         # Returns correct solution for each question
         test1_solution = Constants.test1_choices[Constants.test_questions_solution[0]-1][1]
-        test2_solution = Constants.test1_choices[Constants.test_questions_solution[1]-1][1]
-        test3_solution = Constants.test1_choices[Constants.test_questions_solution[2]-1][1]
-        test4_solution = Constants.test1_choices[Constants.test_questions_solution[3]-1][1]
-        test5_solution = Constants.test1_choices[Constants.test_questions_solution[4]-1][1]
+        test2_solution = Constants.test2_choices[Constants.test_questions_solution[1]-1][1]
+        test3_solution = Constants.test3_choices[Constants.test_questions_solution[2]-1][1]
+        test4_solution = Constants.test4_choices[Constants.test_questions_solution[3]-1][1]
+        test5_solution = Constants.test5_choices[Constants.test_questions_solution[4]-1][1]
 
         return {
             'test1_solution': test1_solution,
