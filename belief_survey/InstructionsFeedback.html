@@ -5,16 +5,30 @@
 {% block content %}
 
     <p>
+        You answered {{ player.test_correct }} questions correctly. You can find all questions and the correct answers repeated below.
+    </p>
+
+    <p>
         {{Constants.test1_label}}
         <br>
         The correct answer is: {{test1_solution}}
+        <br><br>
+        {{Constants.test2_label}}
+        <br>
+        The correct answer is: {{test2_solution}}
+        <br><br>
+        {{Constants.test3_label}}
+        <br>
+        The correct answer is: {{test3_solution}}
+        <br><br>
+        {{Constants.test4_label}}
+        <br>
+        The correct answer is: {{test4_solution}}
+        <br><br>
+        {{Constants.test5_label}}
+        <br>
+        The correct answer is: {{test5_solution}}
     </p>
-
-
-    <p>
-        You answered {{ player.test_correct }} questions correctly.
-    </p>
-
 
     {% if player.test_correct >= Constants.test_questions_required %}
         <p>
@@ -24,7 +38,6 @@
             .next {float: right; margin: 40px auto;}
         </style>
         <button class="btn btn-primary next">Next</button>
-
 
     {% else %}
 
