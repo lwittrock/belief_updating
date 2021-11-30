@@ -24,6 +24,9 @@ class Constants(BaseConstants):
     test_questions_required = 4  # Number of correct test questions required to proceed with experiment.
     scoring_rule_factor = 3
 
+    # test questions
+    test1_label = 'test123' # 1. What are the chances that the red urn is randomly selected?
+
     # Implied inputs
     num_rounds = num_balls + len(verifications[0])
 
@@ -39,7 +42,7 @@ class Group(BaseGroup):
 class Player(BasePlayer):
     # Variables for instruction test
     test1 = models.IntegerField(doc='Test question 1',
-                                label='1. What are the chances that the red urn is randomly selected?',
+                                label=Constants.test1_label,
                                 choices=[
                                     [1, '50%'],
                                     [2, '30%'],
