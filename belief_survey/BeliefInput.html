@@ -119,8 +119,10 @@
     </tr>
     </table>
 
-    <br><br>
-    You previously thought it was {{player.prev_belief}}% likely that the selected urn is red.
+    {% if player.round_number > 1 %}
+        <br><br>
+        You previously thought it was {{player.prev_belief}}% likely that the selected urn is red.
+    {% endif %}
 
     </p>
 
