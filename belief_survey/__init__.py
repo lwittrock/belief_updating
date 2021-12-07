@@ -158,6 +158,7 @@ def creating_session(subsession: Subsession):
             for i in list_of_round_ids:
                 player.in_round(i).urn = player.in_round(1).urn
                 player.in_round(i).pay_round = player.in_round(1).pay_round
+                player.in_round(i).treat = player.in_round(1).treat
 
                 draw = random.uniform(0, 1)
                 if i not in participant.verification_rounds:  # randomize blue / red given urn distribution and urn draw
