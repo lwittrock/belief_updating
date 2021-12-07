@@ -293,7 +293,13 @@ class Instructions(Page):
         else:
             test5_correct = 0
 
-        player.test_correct = test1_correct + test2_correct + test3_correct + test4_correct + test5_correct
+        if player.test6 == Constants.test_questions_solution[5]:
+            test6_correct = 1
+        else:
+            test6_correct = 0
+
+        player.test_correct = test1_correct + test2_correct + test3_correct \
+                              + test4_correct + test5_correct + test6_correct
 
 
 class InstructionsFeedback(Page):
@@ -399,14 +405,14 @@ class BeliefInput(Page):
         if player.round_number == player.participant.verification_rounds[2]:
             participant = player.participant
             r = player.round_number
-            if participant.signals[r-1][1] == 'fake':
+            if participant.signals[r - 1][1] == 'fake':
                 sig = 'uninformative'
             else:
                 sig = 'informative'
 
-            participant.belief_q = [r-1,
-                                    participant.signals[r-1][0],
-                                    player.in_round(r-1).belief,
+            participant.belief_q = [r - 1,
+                                    participant.signals[r - 1][0],
+                                    player.in_round(r - 1).belief,
                                     r,
                                     sig,
                                     player.in_round(r).belief
