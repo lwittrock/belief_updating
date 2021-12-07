@@ -49,7 +49,8 @@ class Constants(BaseConstants):
     test6_choices = [
         [1, 'We have a strict no-deception rule, meaning that everything you see written during the study is correct.'],
         [2, 'Some parts of the study may tell you incorrect information.'],
-        [3, 'Some studies on Prolific have lied to me before. I cannot fully trust any information provided to me during this study.']
+        [3,
+         'Some studies on Prolific have lied to me before. I cannot fully trust any information provided to me during this study.']
     ]
     test_questions_solution = [1, 2, 3, 3, 3, 1]  # Correct answers to the 4 test questions. TO UPDATE
     test_questions_required = 5  # Number of correct test questions required to proceed with experiment.
@@ -109,7 +110,8 @@ class Player(BasePlayer):
     pay_round = models.IntegerField(doc='Randomly chosen payoff round')
 
     # Variables for additional indep variables
-    sr_button_clicks = models.IntegerField(doc='Number of times clicked tell me more button in instructions for scoring rule')
+    sr_button_clicks = models.IntegerField(
+        doc='Number of times clicked tell me more button in instructions for scoring rule')
     info_button_clicks = models.IntegerField(doc='Number of times clicked background instruction button')
 
 
@@ -155,7 +157,8 @@ def creating_session(subsession: Subsession):
                 participant.verification_rounds.append(element + n)
 
             # Randomizing treatment
-            player.treat = random.randint(1, 3)  # 1: hist, no prev belief. 2: no hist, prev belief. 3: hist and prev belief
+            player.treat = random.randint(1,
+                                          3)  # 1: hist, no prev belief. 2: no hist, prev belief. 3: hist and prev belief
 
             # Random pay round
             player.pay_round = random.randint(1, Constants.num_rounds)
@@ -236,10 +239,10 @@ class Instructions(Page):
     def vars_for_template(player: Player):
         def sr_urn(report, urn):
             if urn == 'red':
-                error_red = (100-report)/100
+                error_red = (100 - report) / 100
                 score = Constants.scoring_rule_factor - Constants.scoring_rule_factor * math.pow(error_red, 2)
             else:
-                error_blue = report/100
+                error_blue = report / 100
                 score = Constants.scoring_rule_factor - Constants.scoring_rule_factor * math.pow(error_blue, 2)
             return score
 
@@ -247,14 +250,14 @@ class Instructions(Page):
         example_60_blue = "%.2f" % sr_urn(60, 'blue')
 
         def sr_report(belief, report):
-            score = belief/100 * sr_urn(report, 'red') + (1-belief/100) * sr_urn(report, 'blue')
+            score = belief / 100 * sr_urn(report, 'red') + (1 - belief / 100) * sr_urn(report, 'blue')
             return score
 
         example_60_60 = "%.2f" % round(sr_report(60, 60), 2)
         example_60_10 = "%.2f" % round(sr_report(60, 10), 2)
         example_60_100 = "%.2f" % round(sr_report(60, 100), 2)
 
-        return{
+        return {
             'example_60_blue': example_60_blue,
             'example_60_red': example_60_red,
             'example_60_60': example_60_60,
@@ -299,13 +302,12 @@ class InstructionsFeedback(Page):
         return player.round_number == 1
 
     def vars_for_template(player: Player):
-
         # Returns correct solution for each question
-        test1_solution = Constants.test1_choices[Constants.test_questions_solution[0]-1][1]
-        test2_solution = Constants.test2_choices[Constants.test_questions_solution[1]-1][1]
-        test3_solution = Constants.test3_choices[Constants.test_questions_solution[2]-1][1]
-        test4_solution = Constants.test4_choices[Constants.test_questions_solution[3]-1][1]
-        test5_solution = Constants.test5_choices[Constants.test_questions_solution[4]-1][1]
+        test1_solution = Constants.test1_choices[Constants.test_questions_solution[0] - 1][1]
+        test2_solution = Constants.test2_choices[Constants.test_questions_solution[1] - 1][1]
+        test3_solution = Constants.test3_choices[Constants.test_questions_solution[2] - 1][1]
+        test4_solution = Constants.test4_choices[Constants.test_questions_solution[3] - 1][1]
+        test5_solution = Constants.test5_choices[Constants.test_questions_solution[4] - 1][1]
 
         return {
             'test1_solution': test1_solution,
@@ -314,6 +316,7 @@ class InstructionsFeedback(Page):
             'test4_solution': test4_solution,
             'test5_solution': test5_solution
         }
+
 
 class UrnDraw(Page):
     @staticmethod
@@ -384,12 +387,26 @@ class BeliefInput(Page):
         if player.round_number == player.pay_round:
             if player.urn == 0:
                 player.payoff = Constants.scoring_rule_factor - \
-                                Constants.scoring_rule_factor * math.pow(player.belief/100, 2)
+                                Constants.scoring_rule_factor * math.pow(player.belief / 100, 2)
             else:
                 player.payoff = Constants.scoring_rule_factor - \
-                                Constants.scoring_rule_factor * math.pow(1-player.belief/100, 2)
+                                Constants.scoring_rule_factor * math.pow(1 - player.belief / 100, 2)
         else:
             player.payoff = 0
+
+        if player.round_number == player.participant.verification_rounds[2]:
+            participant = player.participant
+            r = player.round_number
+
+            participant.belief_q = [r-1,
+                                    participant.signals[r-1][0],
+                                    player.in_round(r-1).belief,
+                                    r,
+                                    participant.signals[r-1][1],
+                                    player.in_round(r).belief
+                                    ]
+
+            print(participant.belief_q)
 
 
 # Sequence of pages to be displayed
