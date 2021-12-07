@@ -45,8 +45,14 @@ class Constants(BaseConstants):
         [3, 'It is unclear if the ball is informative or uninformative.'],
         [4, 'The ball came from one of the informative ones.']
     ]
-    test_questions_solution = [1, 2, 3, 3, 3]  # Correct answers to the 4 test questions. TO UPDATE
-    test_questions_required = 4  # Number of correct test questions required to proceed with experiment.
+    test6_label = '6. Can any part of the instructions be misleading for the questions you will be asked during the study?'
+    test6_choices = [
+        [1, 'We have a strict no-deception rule, meaning that everything you see written during the study is correct.'],
+        [2, 'Some parts of the study may tell you incorrect information.'],
+        [3, 'Some studies on Prolific have lied to me before. I cannot fully trust any information provided to me during this study.']
+    ]
+    test_questions_solution = [1, 2, 3, 3, 3, 1]  # Correct answers to the 4 test questions. TO UPDATE
+    test_questions_required = 5  # Number of correct test questions required to proceed with experiment.
 
     # Implied inputs
     num_rounds = num_balls + len(verifications[0])
@@ -81,6 +87,10 @@ class Player(BasePlayer):
     test5 = models.IntegerField(doc='Test question 5',
                                 label=Constants.test5_label,
                                 choices=Constants.test5_choices,
+                                widget=widgets.RadioSelect)
+    test6 = models.IntegerField(doc='Test question 6',
+                                label=Constants.test6_label,
+                                choices=Constants.test6_choices,
                                 widget=widgets.RadioSelect)
 
     test_correct = models.IntegerField(doc='Number of correct test questions')
@@ -220,7 +230,7 @@ class Instructions(Page):
         return player.round_number == 1
 
     form_model = 'player'
-    form_fields = ['test1', 'test2', 'test3', 'test4', 'test5', 'sr_button_clicks']
+    form_fields = ['test1', 'test2', 'test3', 'test4', 'test5', 'test6', 'sr_button_clicks']
 
     @staticmethod
     def vars_for_template(player: Player):

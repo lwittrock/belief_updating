@@ -7,35 +7,28 @@
 
 {% block content %}
 
-    <div>
     <p>
         The main part of this study starts now. From now on your decisions affect your bonus payment.
     </p>
     <p>
-        One of the two urns is now randomly selected. This urn will remain the same throughout the study and your task will be to guess its color.
+        One of the two urns (red or blue) is now randomly selected. This urn will remain the same throughout the study and your task will be to guess its color.
+        The balls from the urn are put into the black box together with some others, as displayed below.
     </p>
     <p>
         On the following pages you will be shown some information about the selected urn and asked to make a guess.
     </p>
-    </div>
-
+    <br>
 
     <table>
         <tr>
-            <td>Step 1:<br></td>
-            <td>Step 2:<br></td>
+            <td><b>Step 1:</b><br></td>
+            <td><b>Step 2:</b><br></td>
         </tr>
         <tr>
-            <td><img src="{{ static 'img/red_or_blue_urn_selected.png' }}" style="width:60%;"/></td>
-            <td><img src="{{ static 'img/from_urn_to_box.png' }}" style="width:60%;"/></td>
+            <td><img src="{{ static 'img/red_or_blue_urn_selected.png' }}" style="width:70%;"/></td>
+            <td><img src="{{ static 'img/from_urn_to_box.png' }}" style="width:70%;"/></td>
         </tr>
     </table>
-
-
-
-
-
-    <br>
 
     <style>
         .next {float: right; margin: 40px auto;}

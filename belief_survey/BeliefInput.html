@@ -65,17 +65,18 @@
     <br><br>
     <p>
         <b>History:</b>
-    <br>
-
-    <style>
-        #t1 tr td  {
-            border:2px solid;
-            width:70px;
-            text-align:center;
-        }
-    </style>
 
     {% if player.treat != 2 %}
+        <br>
+
+        <style>
+            #t1 tr td  {
+                border:2px solid;
+                width:70px;
+                text-align:center;
+            }
+        </style>
+
         <table id="t1">
         <tr>
             <td>Ball 1</td>
@@ -123,6 +124,11 @@
     {% if player.round_number > 1 and player.treat > 1%}
         <br>
         You previously thought it was <b>{{prev_belief}}%</b> likely that the selected urn is red.
+    {% endif %}
+
+    {% if player.round_number == 1 and player.treat == 2 %}
+        <br>
+        This is the first round. Nothing to display yet.
     {% endif %}
 
     </p>
