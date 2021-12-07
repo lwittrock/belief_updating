@@ -342,7 +342,6 @@ class BeliefInput(Page):
             prev_belief = player.in_round(player.round_number - 1).belief
 
         # if round is equal to ball verified. then first show ball and in rounds >= round + 1 show the other ball
-
         pic1 = pic_displayed(1)
         pic2 = pic_displayed(2)
         pic3 = pic_displayed(3)
