@@ -145,7 +145,7 @@ def creating_session(subsession: Subsession):
                 participant.verification_rounds.append(element + n)
 
             # Randomizing treatment
-            player.treat = random.randint(1, 3)
+            player.treat = random.randint(1, 3)  # 1: hist, no prev belief. 2: no hist, prev belief. 3: hist and prev belief
 
             # Random pay round
             player.pay_round = random.randint(1, Constants.num_rounds)

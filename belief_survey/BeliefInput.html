@@ -75,53 +75,54 @@
         }
     </style>
 
+    {% if player.treat != 2 %}
+        <table id="t1">
+        <tr>
+            <td>Ball 1</td>
+            <td>Ball 2</td>
+            <td>Ball 3</td>
+            <td>Ball 4</td>
+            <td>Ball 5</td>
+            <td>Ball 6</td>
+            <td>Ball 7</td>
+            <td>Ball 8</td>
+            <td>Ball 9</td>
+        </tr>
+        <tr style="height: 70px">
+            <td>
+                <img src="{{ static pic1 }}" width="40" height="auto"/>
+            </td>
+            <td>
+                <img src="{{ static pic2 }}" width="40" height="auto"/>
+            </td>
+            <td>
+                <img src="{{ static pic3 }}" width="40" height="auto"/>
+            </td>
+            <td>
+                <img src="{{ static pic4 }}" width="40" height="auto"/>
+            </td>
+            <td>
+                <img src="{{ static pic5 }}" width="40" height="auto"/>
+            </td>
+            <td>
+                <img src="{{ static pic6 }}" width="40" height="auto"/>
+            </td>
+            <td>
+                <img src="{{ static pic7 }}" width="40" height="auto"/>
+            </td>
+            <td>
+                <img src="{{ static pic8 }}" width="40" height="auto"/>
+            </td>
+            <td>
+                <img src="{{ static pic9 }}" width="40" height="auto"/>
+            </td>
+        </tr>
+        </table>
+    {% endif %}
 
-    <table id="t1">
-    <tr>
-        <td>Ball 1</td>
-        <td>Ball 2</td>
-        <td>Ball 3</td>
-        <td>Ball 4</td>
-        <td>Ball 5</td>
-        <td>Ball 6</td>
-        <td>Ball 7</td>
-        <td>Ball 8</td>
-        <td>Ball 9</td>
-    </tr>
-    <tr style="height: 70px">
-        <td>
-            <img src="{{ static pic1 }}" width="40" height="auto"/>
-        </td>
-        <td>
-            <img src="{{ static pic2 }}" width="40" height="auto"/>
-        </td>
-        <td>
-            <img src="{{ static pic3 }}" width="40" height="auto"/>
-        </td>
-        <td>
-            <img src="{{ static pic4 }}" width="40" height="auto"/>
-        </td>
-        <td>
-            <img src="{{ static pic5 }}" width="40" height="auto"/>
-        </td>
-        <td>
-            <img src="{{ static pic6 }}" width="40" height="auto"/>
-        </td>
-        <td>
-            <img src="{{ static pic7 }}" width="40" height="auto"/>
-        </td>
-        <td>
-            <img src="{{ static pic8 }}" width="40" height="auto"/>
-        </td>
-        <td>
-            <img src="{{ static pic9 }}" width="40" height="auto"/>
-        </td>
-    </tr>
-    </table>
-
-    {% if player.round_number > 1 %}
-        <br><br>
-        You previously thought it was {{prev_belief}} % likely that the selected urn is red.
+    {% if player.round_number > 1 and player.treat > 1%}
+        <br>
+        You previously thought it was <b>{{prev_belief}}%</b> likely that the selected urn is red.
     {% endif %}
 
     </p>
