@@ -85,6 +85,9 @@ class Player(BasePlayer):
 
     test_correct = models.IntegerField(doc='Number of correct test questions')
 
+    # Treatment variable
+    treat = models.IntegerField(doc='Variable indicating treatment')
+
     # Variables for urn, signals and belief input
     urn = models.IntegerField(doc='Randomly generated urn color, 0=blue and 1=red')
     ball = models.StringField(doc='Ball color shown')
@@ -140,6 +143,9 @@ def creating_session(subsession: Subsession):
             for element in participant.verification_balls:
                 n += 1
                 participant.verification_rounds.append(element + n)
+
+            # Randomizing treatment
+            player.treat = random.randint(1, 3)
 
             # Random pay round
             player.pay_round = random.randint(1, Constants.num_rounds)
@@ -330,8 +336,10 @@ class BeliefInput(Page):
         player.verification = player.participant.signals[player.round_number - 1][1]
 
         prev_ball = ''
+        prev_belief = ''
         if player.round_number > 1:
             prev_ball = player.participant.signals[player.round_number - 2][0]
+            prev_belief = player.in_round(player.round_number - 1).belief
 
         # if round is equal to ball verified. then first show ball and in rounds >= round + 1 show the other ball
 
@@ -358,6 +366,7 @@ class BeliefInput(Page):
             'pic9': pic9,
 
             'prev_ball': prev_ball,
+            'prev_belief': prev_belief,
         }
 
     @staticmethod
