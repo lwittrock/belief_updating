@@ -308,13 +308,15 @@ class InstructionsFeedback(Page):
         test3_solution = Constants.test3_choices[Constants.test_questions_solution[2] - 1][1]
         test4_solution = Constants.test4_choices[Constants.test_questions_solution[3] - 1][1]
         test5_solution = Constants.test5_choices[Constants.test_questions_solution[4] - 1][1]
+        test6_solution = Constants.test6_choices[Constants.test_questions_solution[5] - 1][1]
 
         return {
             'test1_solution': test1_solution,
             'test2_solution': test2_solution,
             'test3_solution': test3_solution,
             'test4_solution': test4_solution,
-            'test5_solution': test5_solution
+            'test5_solution': test5_solution,
+            'test6_solution': test6_solution
         }
 
 
