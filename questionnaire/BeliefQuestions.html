@@ -3,9 +3,13 @@
 {{ endblock }}
 {{ block content }}
 
-    {{ formfields }}
+    {{ formfield 'open_feedback' label=belief_q_label}}
 
-    <br><br>
+    {{ formfield 'belief_optimal'}}
+
+    {{ formfield 'belief_fake_blue'}}
+
+    {{ formfield 'belief_fake_red'}}
 
     <style>
         .next {float: right; margin: 40px auto;}

@@ -1,7 +1,6 @@
 from otree.api import *
 import pytz
 
-
 author = 'Lars Wittrock'
 
 doc = """
@@ -25,10 +24,11 @@ class Group(BaseGroup):
 
 class Player(BasePlayer):
     # Belief Questions TO ADD MORE HERE
-    open_feedback = models.LongStringField(doc='Open ended description of what a subject did and why.',
-                                           label='We would like to hear your thoughts on the choices you made. To do so we will take one round you saw during the study. In round xx you saw a red/blue ball and reported xx probability. In the next round you learnt that the previously drawn ball was uninf/inf. You then reported xx. What were your thoughts for making that report?')
+    open_feedback = models.LongStringField(doc='Open ended description of what a subject did and why.')
     belief_optimal = models.IntegerField(doc='Subjective probability regarding optimality of own action',
-                                         label='In theory, for each ball that was shown to you it was possible to calculate the exact percentage chance the selected urn was red. How close (in percentage points) do you think you were on average to this correct probability?')
+                                         label='In theory, for each ball that was shown to you it was possible to calculate '
+                                               'the exact percentage chance the selected urn was red. '
+                                               'How close (in percentage points) do you think you were on average to this correct probability?')
     belief_fake_blue = models.IntegerField(doc='Subjective probability blue signals are fake',
                                            label='How likely is it that blue balls were fake?')
     belief_fake_red = models.IntegerField(doc='Subjective probability red signals are fake',
@@ -125,6 +125,21 @@ class BeliefQuestions(Page):
     form_model = 'player'
     form_fields = ['open_feedback', 'belief_optimal', 'belief_fake_blue', 'belief_fake_red']
 
+    def vars_for_template(player: Player):
+        belief_q_label = 'We would like to hear your thoughts on the choices you made. ' \
+                         'To do so we will take one round you saw during the study. In round ' \
+                         + str(player.participant.belief_q[0]) + \
+                         ' you saw a ' \
+                         + str(player.participant.belief_q[1]) + \
+                         ' ball and reported ' \
+                         + str(player.participant.belief_q[2]) + \
+                         '% probability. In the next round you learnt that the previously drawn ball was ' \
+                         + str(player.participant.belief_q[4]) + \
+                         '. You then reported ' \
+                         + str(player.participant.belief_q[5]) + \
+                         '%. What were your thoughts for making that report?'
+
+        return {'belief_q_label': belief_q_label}
 
 class CRT(Page):
     form_model = 'player'

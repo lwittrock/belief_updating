@@ -399,12 +399,16 @@ class BeliefInput(Page):
         if player.round_number == player.participant.verification_rounds[2]:
             participant = player.participant
             r = player.round_number
+            if participant.signals[r-1][1] == 'fake':
+                sig = 'uninformative'
+            else:
+                sig = 'informative'
 
             participant.belief_q = [r-1,
                                     participant.signals[r-1][0],
                                     player.in_round(r-1).belief,
                                     r,
-                                    participant.signals[r-1][1],
+                                    sig,
                                     player.in_round(r).belief
                                     ]
 
