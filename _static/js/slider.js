@@ -2,11 +2,13 @@
 //	From: https://gitlab.com/gr0ssmann/otree_slider,
 //	Further explanation (older version): https://www.accountingexperiments.com/post/sliders/
 
+// Added check that slider was touched
+
+var touched = 0;
 
 var slider_min = 0;
 var slider_max = 100;
 var slider_step = 1;
-
 var oldval = "";
 
 function showVal1(what) {
@@ -15,6 +17,7 @@ function showVal1(what) {
 
     oldval = what;
 }
+
 
 function show_slider(event) {
     max = parseInt(getComputedStyle(document.getElementById("before")).width.replace("px", ""));
@@ -30,10 +33,11 @@ function show_slider(event) {
 
     showVal1(now);
     document.getElementById("belief_slider").value = now;
+
+    touched = 1;
 }
 
 function showFloat(el, val, dec = 0) {
-
     if (isNaN(val)) {
         el.innerHTML = "???";
     }
@@ -50,3 +54,15 @@ $(document).ready(function (event) {
     showFloat(document.getElementById("slidermin"), slider_min);
     showFloat(document.getElementById("slidermax"), slider_max);
 });
+
+// on form submission, check that all elements have been moved
+function checkTouched() {
+    if (touched === 1 ) {
+          form.submit();
+    }
+    else {
+        event.preventDefault();
+        window.scrollTo(0, 0);
+        document.getElementById('alert').style.display="block";
+    }
+}

@@ -15,8 +15,6 @@
         info_button_clicks += 1
         document.getElementById("info_button_clicks").value = info_button_clicks;
     }
-
-
     </script>
 
     <!-- JS for slider -->
@@ -31,126 +29,129 @@
 
 {% block content %}
 
-    <p>
-        <b>Background:</b>
-    </p>
-    <input type="hidden" name="info_button_clicks" id="info_button_clicks" value="0"/>
-
-    <button type="button" onclick="myFunction()">Show/hide instructions</button>
-
-    <div style="display:none" id="background">
-        <br>
-        <p>
-        There are two urns, one red and one blue, as displayed below. One of the two urns was chosen in the beginning.
-        It will remain the same throughout this study. You do not know which of the 2 urns was selected.
-        <div>
-            <img src="{{ static 'img/red_or_blue_urn.png' }}" style="width:30%;"/>
-        </div>
-        <br>
-        <p>
-            The 4 balls from the selected urn were added to the black box displayed below.
-            You do not know the color of the urn that was selected.
-            The 4 added balls are therefore displayed in grey.
-            But these are either 3 red balls and 1 blue ball or 3 blue balls and 1 red ball.
-            The black box also contains 6 other balls that do not come from the urn.
-            A ball is drawn from the black box. The color of the ball is shown to you and
-            the ball is put back into the box with the other balls.
-        </p>
-        <div>
-            <img src="{{ static 'img/black_box.png' }}" style="width:30%;"/>
-        </div>
-        </p>
+    <div class="alert alert-danger" id="alert" style="display:none;">
+        Please move the slider to answer the question.
     </div>
 
-    <br><br>
+    <p>
+        <b>Background:</b>
+        <br>
+
+        <input type="hidden" name="info_button_clicks" id="info_button_clicks" value="0"/>
+
+        <button type="button" onclick="myFunction()">Show/hide instructions</button>
+
+        <div style="display:none" id="background">
+            <br>
+            <p>
+            There are two urns, one red and one blue, as displayed below. One of the two urns was chosen in the beginning.
+            It will remain the same throughout this study. You do not know which of the 2 urns was selected.
+            <div>
+                <img src="{{ static 'img/red_or_blue_urn.png' }}" style="width:30%;"/>
+            </div>
+            <br>
+            <p>
+                The 4 balls from the selected urn were added to the black box displayed below.
+                You do not know the color of the urn that was selected.
+                The 4 added balls are therefore displayed in grey.
+                But these are either 3 red balls and 1 blue ball or 3 blue balls and 1 red ball.
+                The black box also contains 6 other balls that do not come from the urn.
+                A ball is drawn from the black box. The color of the ball is shown to you and
+                the ball is put back into the box with the other balls.
+            </p>
+            <div>
+                <img src="{{ static 'img/black_box.png' }}" style="width:30%;"/>
+            </div>
+            </p>
+        </div>
+
+    </p>
+
     <p>
         <b>History:</b>
 
-    {% if player.treat != 2 %}
-        <br>
+        {% if player.treat != 2 %}
+            <br>
 
-        <style>
-            #t1 tr td  {
-                border:2px solid;
-                width:70px;
-                text-align:center;
-            }
-        </style>
+            <style>
+                #t1 tr td  {
+                    border:2px solid;
+                    width:70px;
+                    text-align:center;
+                }
+            </style>
 
-        <table id="t1">
-        <tr>
-            <td>Ball 1</td>
-            <td>Ball 2</td>
-            <td>Ball 3</td>
-            <td>Ball 4</td>
-            <td>Ball 5</td>
-            <td>Ball 6</td>
-            <td>Ball 7</td>
-            <td>Ball 8</td>
-            <td>Ball 9</td>
-        </tr>
-        <tr style="height: 70px">
-            <td>
-                <img src="{{ static pic1 }}" width="40" height="auto"/>
-            </td>
-            <td>
-                <img src="{{ static pic2 }}" width="40" height="auto"/>
-            </td>
-            <td>
-                <img src="{{ static pic3 }}" width="40" height="auto"/>
-            </td>
-            <td>
-                <img src="{{ static pic4 }}" width="40" height="auto"/>
-            </td>
-            <td>
-                <img src="{{ static pic5 }}" width="40" height="auto"/>
-            </td>
-            <td>
-                <img src="{{ static pic6 }}" width="40" height="auto"/>
-            </td>
-            <td>
-                <img src="{{ static pic7 }}" width="40" height="auto"/>
-            </td>
-            <td>
-                <img src="{{ static pic8 }}" width="40" height="auto"/>
-            </td>
-            <td>
-                <img src="{{ static pic9 }}" width="40" height="auto"/>
-            </td>
-        </tr>
-        </table>
-    {% endif %}
+            <table id="t1">
+            <tr>
+                <td>Ball 1</td>
+                <td>Ball 2</td>
+                <td>Ball 3</td>
+                <td>Ball 4</td>
+                <td>Ball 5</td>
+                <td>Ball 6</td>
+                <td>Ball 7</td>
+                <td>Ball 8</td>
+                <td>Ball 9</td>
+            </tr>
+            <tr style="height: 70px">
+                <td>
+                    <img src="{{ static pic1 }}" width="40" height="auto"/>
+                </td>
+                <td>
+                    <img src="{{ static pic2 }}" width="40" height="auto"/>
+                </td>
+                <td>
+                    <img src="{{ static pic3 }}" width="40" height="auto"/>
+                </td>
+                <td>
+                    <img src="{{ static pic4 }}" width="40" height="auto"/>
+                </td>
+                <td>
+                    <img src="{{ static pic5 }}" width="40" height="auto"/>
+                </td>
+                <td>
+                    <img src="{{ static pic6 }}" width="40" height="auto"/>
+                </td>
+                <td>
+                    <img src="{{ static pic7 }}" width="40" height="auto"/>
+                </td>
+                <td>
+                    <img src="{{ static pic8 }}" width="40" height="auto"/>
+                </td>
+                <td>
+                    <img src="{{ static pic9 }}" width="40" height="auto"/>
+                </td>
+            </tr>
+            </table>
+        {% endif %}
 
-    {% if player.round_number > 1 and player.treat > 1%}
-        <br>
-        You previously thought it was <b>{{prev_belief}}%</b> likely that the selected urn is red.
-    {% endif %}
+        {% if player.round_number > 1 and player.treat > 1%}
+            <br>
+            You previously thought it was <b>{{prev_belief}}%</b> likely that the selected urn is red.
+        {% endif %}
 
-    {% if player.round_number == 1 and player.treat == 2 %}
-        <br>
-        This is the first round. Nothing to display yet.
-    {% endif %}
+        {% if player.round_number == 1 and player.treat == 2 %}
+            <br>
+            This is the first round. Nothing to display yet.
+        {% endif %}
 
     </p>
 
     <p>
-    <b>
-        New Information:
-    </b>
-    <br>
-    {% if player.round_number in player.participant.verification_rounds %}
-        The {{ prev_ball }} ball that was drawn last round was one of the
+        <b>New Information:</b>
+        <br>
+        {% if player.round_number in player.participant.verification_rounds %}
+            The {{ prev_ball }} ball that was drawn last round was one of the
 
-        {% if player.verification == 'true' %}
-            4 <b>informative</b> balls.
+            {% if player.verification == 'true' %}
+                4 <b>informative</b> balls.
+            {% else %}
+                6 <b>uninformative</b> balls.
+            {% endif %}
+
         {% else %}
-            6 <b>uninformative</b> balls.
+            A <b>{{ player.ball }}</b> ball was drawn from the black box. It is put back into the box with the other balls.
         {% endif %}
-
-    {% else %}
-        A <b>{{ player.ball }}</b> ball was drawn from the black box. It is put back into the box with the other balls.
-    {% endif %}
-
     </p>
 
     <p>
@@ -201,7 +202,7 @@
     <style>
         .next {float: right; margin: 40px auto;}
     </style>
-    <button class="btn btn-primary next">Next</button>
+    <button name="slider_check" id="slider_check" class="btn btn-primary next" onclick="checkTouched()">Next</button>
 
 
 {% endblock %}
