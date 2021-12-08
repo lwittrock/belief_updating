@@ -54,7 +54,7 @@
     <div class="tab">
 
         <p>
-            There are two urns, one red and one blue, as displayed below.
+            There are two urns, one red and one blue, each containing 4 balls as displayed below.
             One of the two urns will be randomly selected in the beginning.
             It will remain the same throughout this study. You do not know which urn will be selected.
         </p>
@@ -64,7 +64,7 @@
         </div>
         <br>
         <p>
-            Your task will be to guess which urn you think was selected.
+            Your <b>task will be to guess which urn you think was selected</b>.
             To do so you will receive hints about the selected urn.
             This will be described on the next page.
         </p>
@@ -78,7 +78,9 @@
     <div class="tab">
 
         <p>
-            The 4 balls from the selected urn will be added to a black box together with some other balls,
+            The selected urn contains 4 balls, 3 of the same color and 1 of the opposite color,
+            as shown on the previous page.
+            The <b>4 balls from the selected urn will be added to a black box</b> together with some other balls,
             as displayed below.
             You do not know the color of the urn that was selected.
             The 4 added balls are therefore displayed in grey.
@@ -91,16 +93,23 @@
         </div>
         <br>
         <p>
-            This study has {{ Constants.num_rounds }} rounds in total. In each round one of two things can happen:
+            This study has {{ Constants.num_rounds }} rounds in total.
+            In each round you get one of two possible hints:
             <ul>
                 <li>
-                    A ball is drawn from the black box. You are told the color of the ball.
+                    <b>A ball is drawn</b> from the black box. You are told the color of the ball.
                     The ball is put back into the box together with the other 9 balls.
+                    You do not know if the balls is informative or uninformative.
+                    <i>Example:</i> A red ball is drawn from the box. &nbsp;
+                    <img src="{{ static 'img/red_ball_q.png' }}" width="40" height="auto"/>
                 </li>
                 <li>
-                    No new ball is drawn but you receive information about the ball you saw previously.
+                    No new ball is drawn, but you receive <b>information about the ball you saw previously</b>.
                     You will be told if the ball you saw before was one of the 4 informative balls or
                     one of the 6 uninformative balls.
+                    <i>Example:</i> Previously you saw a red ball.
+                    The ball that was drawn last round was one of the 6 uninformative balls. &nbsp;
+                    <img src="{{ static 'img/red_ball_u.png' }}" width="40" height="auto"/>
                 </li>
             </ul>
             In every round you will be asked to make a guess about the urn that will be selected in the beginning.
