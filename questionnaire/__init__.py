@@ -28,11 +28,17 @@ class Player(BasePlayer):
     belief_optimal = models.IntegerField(doc='Subjective probability regarding optimality of own action',
                                          label='In theory, for each ball that was shown to you it was possible to calculate '
                                                'the exact percentage chance the selected urn was red. '
-                                               'How close (in percentage points) do you think you were on average to this correct probability?')
+                                               'How close (in percentage points) do you think you were on average to this correct probability?',
+                                         min=0,
+                                         max=100)
     belief_fake_blue = models.IntegerField(doc='Subjective probability blue signals are fake',
-                                           label='How likely is it that blue balls were fake?')
+                                           label='How likely is it that blue balls were fake?',
+                                           min=0,
+                                           max=100)
     belief_fake_red = models.IntegerField(doc='Subjective probability red signals are fake',
-                                          label='How likely is it that red balls were fake?')
+                                          label='How likely is it that red balls were fake?',
+                                          min=0,
+                                          max=100)
 
     # CRT
     crt1 = models.IntegerField(doc='CRT1 - Running',
@@ -131,9 +137,10 @@ class BeliefQuestions(Page):
                          + str(player.participant.belief_q[0]) + \
                          ' you saw a ' \
                          + str(player.participant.belief_q[1]) + \
-                         ' ball and reported ' \
+                         ' ball and reported a ' \
                          + str(player.participant.belief_q[2]) + \
-                         '% probability. In the next round you learnt that the previously drawn ball was ' \
+                         '% chance of the selected urn being red. ' \
+                         'In the next round you learnt that the previously drawn ball was ' \
                          + str(player.participant.belief_q[4]) + \
                          '. You then reported ' \
                          + str(player.participant.belief_q[5]) + \
