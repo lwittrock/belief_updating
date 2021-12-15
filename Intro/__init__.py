@@ -74,4 +74,4 @@ class ProlificID(Page):
     form_fields = ['prolific_id']
 
 
-page_sequence = [Welcome, SorryNoPhone, Consent, ProlificID]
+page_sequence = [Welcome, SorryNoPhone, Consent]
