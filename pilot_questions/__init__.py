@@ -77,7 +77,12 @@ class Feedback(Page):
     form_fields = [
         'instructions_clear',
         'instructions_improve',
-        'task_clear'
+        'task_clear',
+        'task_interesting',
+        'task_difficult',
+        'task_improve',
+        'feedback_other',
+        'feedback_exp_demand'
     ]
 
 
