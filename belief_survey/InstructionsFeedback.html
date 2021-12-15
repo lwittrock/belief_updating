@@ -12,26 +12,38 @@
         {{Constants.test1_label}}
         <br>
         The correct answer is: {{test1_solution}}
+        <br>
+        Your answer was: {{player.field_display('test1')}}
         <br><br>
         {{Constants.test2_label}}
         <br>
         The correct answer is: {{test2_solution}}
+        <br>
+        Your answer was: {{player.field_display('test2')}}
         <br><br>
         {{Constants.test3_label}}
         <br>
         The correct answer is: {{test3_solution}}
+        <br>
+        Your answer was: {{player.field_display('test3')}}
         <br><br>
         {{Constants.test4_label}}
         <br>
         The correct answer is: {{test4_solution}}
+        <br>
+        Your answer was: {{player.field_display('test4')}}
         <br><br>
         {{Constants.test5_label}}
         <br>
         The correct answer is: {{test5_solution}}
+        <br>
+        Your answer was: {{player.field_display('test5')}}
         <br><br>
         {{Constants.test6_label}}
         <br>
         The correct answer is: {{test6_solution}}
+        <br>
+        Your answer was: {{player.field_display('test6')}}
     </p>
 
     {% if player.test_correct >= Constants.test_questions_required %}
@@ -44,10 +56,10 @@
         <button class="btn btn-primary next">Next</button>
 
     {% else %}
-
+        <br>
         <p>
             Unfortunately, {{ Constants.test_questions_required }} correct answers were required to continue the study.
-            This marks the end of the study.
+            This marks the end of the study. You will receive a fixed payment of xxxxx.
         </p>
         <p>
             To leave the study, simply close your browser or the active window.

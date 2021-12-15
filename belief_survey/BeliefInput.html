@@ -51,11 +51,11 @@
             </div>
             <br>
             <p>
-                The 4 balls from the selected urn were added to the black box displayed below.
+                The 4 informative balls, labeled with an 'I', from the selected urn were added to the black box displayed below.
                 You do not know the color of the urn that was selected.
                 The 4 added balls are therefore displayed in grey.
                 But these are either 3 red balls and 1 blue ball or 3 blue balls and 1 red ball.
-                The black box also contains 6 other balls that do not come from the urn.
+                The black box also contains 6 other uninformative balls, labeled with a 'U', that do not come from the urn.
                 A ball is drawn from the black box. The color of the ball is shown to you and
                 the ball is put back into the box with the other balls.
             </p>
@@ -150,7 +150,15 @@
             {% endif %}
 
         {% else %}
-            A <b>{{ player.ball }}</b> ball was drawn from the black box. It is put back into the box with the other balls.
+            A <b>{{ player.ball }}</b> ball was drawn from the black box: &nbsp;
+
+            {% if player.ball == 'blue' %}
+                <img src="{{ static 'img/blue_ball_q.png' }}" width="40" height="auto"/>
+            {% else %}
+                <img src="{{ static 'img/red_ball_q.png' }}" width="40" height="auto"/>
+            {% endif %}
+            &nbsp;
+            It is put back into the box with the other balls.
         {% endif %}
     </p>
 

@@ -21,6 +21,7 @@
             btn.onclick = function () {
                 activeTab += parseInt(btn.dataset.offset);
                 showCurrentTabOnly();
+                window.scrollTo(0, 0);
             }
         }
 
@@ -55,12 +56,12 @@
 
         <p>
             There are two urns, one red and one blue, each containing 4 balls as displayed below.
+            All balls are labeled with a letter 'I', the meaning of which will be explained on the next page.
             One of the two urns will be randomly selected in the beginning.
             It will remain the same throughout this study. You do not know which urn will be selected.
         </p>
-        <br>
         <div>
-            <img src="{{ static 'img/red_or_blue_urn.png' }}" style="width:40%;"/>
+            <img src="{{ static 'img/red_or_blue_urn_label.png' }}" style="width:40%;"/>
         </div>
         <br>
         <p>
@@ -81,11 +82,10 @@
             The selected urn contains 4 balls, 3 of the same color and 1 of the opposite color,
             as shown on the previous page.
             The <b>4 balls from the selected urn will be added to a black box</b> together with some other balls,
-            as displayed below.
-            You do not know the color of the urn that was selected.
-            The 4 added balls are therefore displayed in grey.
+            as displayed below. These are the balls labeled with the letter 'I', which stands for 'informative'.
+            You do not know the color of the urn that was selected, therefore the 4 informative balls are displayed in grey.
             The black box also contains 6 other balls that do not come from the urn.
-            These 6 balls are therefore labeled 'uninformative'.
+            These 6 balls are labeled with the letter 'U', which stands for 'uninformative'.
         </p>
         <br>
         <div>
@@ -112,13 +112,9 @@
                     <img src="{{ static 'img/red_ball_u.png' }}" width="40" height="auto"/>
                 </li>
             </ul>
-            In every round you will be asked to make a guess about the urn that will be selected in the beginning.
-            This urn will remain the same one throughout the entire study.
-            You will be told the color of this urn after the 12 rounds are over.
-            <br><br>
-
-            At the end of the study, you will receive a bonus which depends on the accuracy of your answer
-            to one random question (you do not know which one). The procedure for calculating your bonus is
+            In every round you will be asked to make a guess about the urn that has been selected in the beginning.
+            At the end of the study you will be told the color of this urn.
+            You will receive a bonus which depends on the accuracy of your answer to one of the 12 guesses (you do not know which one). The procedure for calculating your bonus is
             described in detail below. The important thing is that <b>the procedure guarantees that you should
             expect to maximize your bonus by reporting what you truly think the chances are in each question.</b>
         </p>

@@ -26,10 +26,10 @@ class Constants(BaseConstants):
     test1_label = '1. What are the chances that the red urn is randomly selected?'
     test1_choices = [[1, '50%'], [2, '30%'], [3, '90%'], [4, '0%']]
 
-    test2_label = '2. How many balls in the black box are from the selected urn?'
+    test2_label = '2. How many informative balls are in the black box?'
     test2_choices = [[1, '2'], [2, '4'], [3, '6'], [4, '8']]
 
-    test3_label = '3. How many balls in the black box are NOT from the selected urn?'
+    test3_label = '3. How many uninformative balls are in the black box?'
     test3_choices = [[1, '2'], [2, '4'], [3, '6'], [4, '8']]
 
     test4_label = '4. A blue ball is drawn from the black box. What does that mean?'
@@ -41,16 +41,15 @@ class Constants(BaseConstants):
     test5_label = '5. You see a red ball with a question mark written on it. What does that mean?'
     test5_choices = [
         [1, 'It is unclear if the ball is red or blue.'],
-        [2, 'The ball came from one of the uninformative ones'],
+        [2, 'The ball is uninformative.'],
         [3, 'It is unclear if the ball is informative or uninformative.'],
-        [4, 'The ball came from one of the informative ones.']
+        [4, 'The ball is informative.']
     ]
-    test6_label = '6. Can any part of the instructions be misleading for the questions you will be asked during the study?'
+    test6_label = '6. What is our policy on deception?'
     test6_choices = [
-        [1, 'We have a strict no-deception rule, meaning that everything you see written during the study is correct.'],
-        [2, 'Some parts of the study may tell you incorrect information.'],
-        [3,
-         'Some studies on Prolific have lied to me before. I cannot fully trust any information provided to me during this study.']
+        [1, 'We apply a strict no-deception rule, meaning that everything you see written during the study is correct.'],
+        [2, 'We may provide you with false information if this is to our benefit.'],
+        [3, 'We may provide you with false information to simplify explanations']
     ]
     test_questions_solution = [1, 2, 3, 3, 3, 1]  # Correct answers to the 4 test questions. TO UPDATE
     test_questions_required = 5  # Number of correct test questions required to proceed with experiment.

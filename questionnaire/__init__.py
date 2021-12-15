@@ -25,18 +25,35 @@ class Group(BaseGroup):
 class Player(BasePlayer):
     # Belief Questions TO ADD MORE HERE
     open_feedback = models.LongStringField(doc='Open ended description of what a subject did and why.')
+    belief_strategy = models.IntegerField(doc='Strategy subjects followed to make guesses',
+                                          label='What method did you mainly use to arrive at some estimate?',
+                                          choices=[
+                                              [1, 'I tried to calculate precise probabilities.'],
+                                              [2, 'I used some rule of thumb for calculations.'],
+                                              [3, 'I mainly relied on my intuition.'],
+                                              [4, 'I had no idea and entered random numbers.']
+                                          ])
     belief_optimal = models.IntegerField(doc='Subjective probability regarding optimality of own action',
                                          label='In theory, for each ball that was shown to you it was possible to calculate '
                                                'the exact percentage chance the selected urn was red. '
-                                               'How close (in percentage points) do you think you were on average to this correct probability?',
-                                         min=0,
-                                         max=100)
-    belief_fake_blue = models.IntegerField(doc='Subjective probability blue signals are fake',
-                                           label='How likely is it that blue balls were fake?',
+                                               'How close (in percentage points) do you think you were on average to this correct probability? '
+                                               '(Zero means you always reported the correct number)',
+                                         choices=[
+                                             [1, '0%'],
+                                             [2, '1-5%'],
+                                             [3, '6-10%'],
+                                             [4, '11-20%'],
+                                             [5, '21-30%'],
+                                             [6, '31-40%'],
+                                             [7, '41-50%'],
+                                             [8, 'More than 50%']
+                                         ])
+    belief_fake_blue = models.IntegerField(doc='',
+                                           label='How likely is it that an uninformative ball is red? (in %)',
                                            min=0,
                                            max=100)
-    belief_fake_red = models.IntegerField(doc='Subjective probability red signals are fake',
-                                          label='How likely is it that red balls were fake?',
+    belief_fake_red = models.IntegerField(doc='',
+                                          label='How likely is it that an uninformative ball is blue? (in %)',
                                           min=0,
                                           max=100)
 
@@ -129,11 +146,10 @@ class Transition(Page):
 
 class BeliefQuestions(Page):
     form_model = 'player'
-    form_fields = ['open_feedback', 'belief_optimal', 'belief_fake_blue', 'belief_fake_red']
+    form_fields = ['belief_strategy', 'open_feedback', 'belief_optimal', 'belief_fake_blue', 'belief_fake_red']
 
     def vars_for_template(player: Player):
-        belief_q_label = 'We would like to hear your thoughts on the choices you made. ' \
-                         'To do so we will take one round you saw during the study. In round ' \
+        belief_q_label = 'Tell us more about one example round you saw during the study. In round ' \
                          + str(player.participant.belief_q[0]) + \
                          ' you saw a ' \
                          + str(player.participant.belief_q[1]) + \
