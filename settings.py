@@ -5,7 +5,7 @@ SESSION_CONFIGS = [
         name='belief_survey',
         display_name='Survey on Belief Updating',
         app_sequence=['Intro', 'belief_survey', 'questionnaire', 'pilot_questions'],
-        num_demo_participants=5,
+        num_demo_participants=40,
     ),
 ]
 
