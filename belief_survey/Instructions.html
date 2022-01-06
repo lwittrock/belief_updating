@@ -79,13 +79,13 @@
     <div class="tab">
 
         <p>
-            The selected urn contains 4 balls, 3 of the same color and 1 of the opposite color,
-            as shown on the previous page.
-            The <b>4 balls from the selected urn will be added to a black box</b> together with some other balls,
-            as displayed below. These are the balls labeled with the letter 'I', which stands for 'informative'.
-            You do not know the color of the urn that was selected, therefore the 4 informative balls are displayed in grey.
-            The black box also contains 6 other balls that do not come from the urn.
-            These 6 balls are labeled with the letter 'U', which stands for 'uninformative'.
+            The selected urn contains 4 balls, 3 of the same color and 1 of the opposite color, as shown on the previous page.
+            All balls from the selected urn are put into a black box. They are labeled with the letter 'I', which stands for 'informative'.
+            If you knew the colour of all 4 balls, you would be able to identify the selected urn.
+            For the moment you do not know the color of the selected urn and therefore the 4 informative balls are displayed in grey (although they have a color, either red or blue).
+            The black box also contains 6 other balls that do not come from the urn. These 6 balls are labeled with the letter 'U', which stands for 'uninformative'.
+            Knowing the color of the uninformative balls does not help to identify the selected urn.
+            The black box and the 10 balls inside it remain the same throughout the entire study.
         </p>
         <br>
         <div>
@@ -112,40 +112,42 @@
                     <img src="{{ static 'img/red_ball_u.png' }}" width="40" height="auto"/>
                 </li>
             </ul>
+        </p>
+        <p>
             In every round you will be asked to make a guess about the urn that has been selected in the beginning.
             At the end of the study you will be told the color of this urn.
             You will receive a bonus which depends on the accuracy of your answer to one of the 12 guesses (you do not know which one). The procedure for calculating your bonus is
-            described in detail below. The important thing is that <b>the procedure guarantees that you should
+            described in detail below. You may skip these details. The important thing is that <b>the procedure guarantees that you should
             expect to maximize your bonus by reporting what you truly think the chances are in each question.</b>
         </p>
 
         <p>
             <input type="hidden" name="sr_button_clicks" id="sr_button_clicks" value="0"/>
 
-            <button type="button" onclick="myFunction()">Tell me more</button>
+            <button type="button" onclick="myFunction()">Details about the bonus calculation</button>
 
             <div style="display:none" id="scoring_rule">
 
             <strong>We apply the following procedure:</strong>
             <br><br>
             First, we randomly pick one of the questions. For this question, we calculate the error you made.
-            This is how many percentage points your report was away from 100% (if the RED BOX has been picked)
-            or from 0% (if the BLUE BOX has been picked). Then, we plug in the error in the following formula:
+            This is how many percentage points your report was away from 100% (if the RED URN was selected)
+            or from 0% (if the BLUE URN was selected). Then, we plug in the error into the following formula:
             <br>
             <div style="text-align: center;">{{ Constants.scoring_rule_factor }} - {{ Constants.scoring_rule_factor }} ∙ error²</div>
             <br>
             This will be your bonus (in Euros).
             <br><br>
-            <strong>EXAMPLE:</strong> Suppose that you report 60% chance that the RED BOX was picked in Step 1.
+            <strong>EXAMPLE:</strong> Suppose that you report 60% chance that the RED URN was selected in Step 1.
             Then, your bonus is calculated as follows:
             <ul>
-                <li>If the BOX was RED:
+                <li>If the urn was RED:
                 <ul>
                     <li>your error is (100%-60%) = 40%</li>
                     <li>your bonus is {{ Constants.scoring_rule_factor }}-{{ Constants.scoring_rule_factor }}∙(40%)² = {{example_60_red}} Euros</li>
                 </ul>
                 </li>
-                <li>If the BOX was BLUE:
+                <li>If the urn was BLUE:
                 <ul>
                     <li>your error is (60%-0%) = 60%</li>
                     <li>your bonus is {{ Constants.scoring_rule_factor }}-{{ Constants.scoring_rule_factor }}∙(60%)² = {{example_60_blue}} Euros</li>
@@ -154,9 +156,9 @@
             </ul>
             <br>
             As we have already mentioned, you should expect to maximize your earnings by reporting what you
-            actually think are the chances of a RED BALL.
+            actually think are the chances of a RED URN.
             <br><br>
-            <strong>EXAMPLE:</strong> If you actually think that the chances are 60% that the RED URN was picked, then:
+            <strong>EXAMPLE:</strong> If you actually think that the chances are 60% that the RED URN was selected, then:
             <ul>
                 <li>By reporting 60%, you will make on average <strong>{{example_60_60}} Euros</strong>.</li>
                 <li>By reporting 10%, you will make on average <strong>{{example_60_10}} Euros</strong>.</li>
@@ -182,7 +184,7 @@
 
         <p>
             Before we start, we need to ensure that you understand the instructions. We ask you to answer 6 simple questions.
-            <b>If you fail to answer correctly at least {{ Constants.test_questions_required }} out of 6 questions, we will have to exclude you from the rest of the study.</b>
+            <b>If you make more than one mistake, we will have to exclude you from the rest of the study.</b>
         </p>
         <p>
             You may view the instructions again by going back to the previous page (click 'back' below).

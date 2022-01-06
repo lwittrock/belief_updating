@@ -32,7 +32,7 @@ class Constants(BaseConstants):
     test3_label = '3. How many uninformative balls are in the black box?'
     test3_choices = [[1, '2'], [2, '4'], [3, '6'], [4, '8']]
 
-    test4_label = '4. A blue ball is drawn from the black box. What does that mean?'
+    test4_label = '4. A single blue ball labeled with a "?" is drawn from the black box. What does that mean?'
     test4_choices = [
         [1, 'The urn selected in the beginning is more likely to be red.'],
         [2, 'This does not tell me anything about the urn selected in the beginning.'],

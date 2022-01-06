@@ -6,6 +6,23 @@
     <!-- Check for mobile devices -->
 	<script src="{{ static "js/MobileCheck.js" }}"></script>
 
+
+    <script>
+
+        var welcome_button_clicks = 0
+        function myFunction() {
+            var x = document.getElementById("welcome_button");
+            if (x.style.display === "none") {
+                x.style.display = "block";
+            } else {
+                x.style.display = "none";
+            }
+            welcome_button_clicks += 1
+            document.getElementById("welcome_button_clicks").value = welcome_button_clicks;
+        }
+
+    </script>
+
 {% endblock %}
 
 
@@ -26,12 +43,37 @@
 {{ block content }}
     <p>
         Welcome to this study conducted by researchers at Maastricht University.
-        In this study you will be able to earn money based on the choices you make.
-        You will earn a fixed participation fee of {{ session.config.participation_fee }} for completing the study.
-        Depending on your choices in the study, you may earn substantially more.
-        We have calibrated the payments so that participants can expect to earn <strong> €?? on average</strong>. Your precise payments can, however,
-        be larger or smaller depending on your decisions during the study.
+        You will be able to earn money based on the choices you make.
+        You will earn a <b>fixed participation fee of {{ session.config.participation_fee }}</b> if you complete the study.
+        Completing the study requires you to answer at least 5 out of 6 instruction comprehension questions correctly.
+        Depending on your choices, <b>you may earn substantially more</b>.
     </p>
+
+    <p>
+        <input type="hidden" name="welcome_button_clicks" id="welcome_button_clicks" value="0"/>
+
+        <button type="button" onclick="myFunction()">Payment details</button>
+
+        <div style="display:none" id="welcome_button">
+
+        After you read the instructions you will be asked to answer 6 comprehension questions.
+        <ul>
+            <li>
+                If you fail to answer correctly at least 5 out of 6 control questions, the study will end for you.
+                You will be given the chance to return your submission within 7 days.
+                You will only receive €0.20 for your time in the form of a bonus.
+                This procedure is in line with Prolific’s policy and it has been approved by Prolific’s administrators.
+            </li>
+            <li>
+                If you answer correctly at least 5 out of 6 control questions, the study continues.
+                If you complete it, you secure the participation fee of €2.50 Euros.
+                Depending on your choices you can also earn an <b>additional bonus, up to €3.00 Euros</b>.
+            </li>
+        </ul>
+
+        </div>
+    </p>
+
     <p>
         The study will take on average around 25 minutes. It is important to note that we apply
         a strict "no-deception" rule, meaning that everything we write is true and implemented exactly as described.

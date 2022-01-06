@@ -34,7 +34,7 @@ class Player(BasePlayer):
                                               [4, 'I had no idea and entered random numbers.']
                                           ])
     belief_optimal = models.IntegerField(doc='Subjective probability regarding optimality of own action',
-                                         label='In theory, for each ball that was shown to you it was possible to calculate '
+                                         label='In theory, after each ball that was shown to you it was possible to calculate '
                                                'the exact percentage chance the selected urn was red. '
                                                'How close (in percentage points) do you think you were on average to this correct probability? '
                                                '(Zero means you always reported the correct number)',

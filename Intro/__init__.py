@@ -35,7 +35,7 @@ class Player(BasePlayer):
         label="Prolific ID:",
     )
 
-    #starting_time = models.LongStringField(doc="Time at which experiment starts") - to implement
+    welcome_button_clicks = models.IntegerField(doc="Number of clicks on button about payment details on welcome page")
 
     # Error messages
     @staticmethod
@@ -44,18 +44,12 @@ class Player(BasePlayer):
         if value != 1:
             return 'Your confirmation is required to proceed.'
 
-    @staticmethod
-    def prolific_id_error_message(value):
-        print('value is', value)
-        if value == '':
-            return 'Your Prolific ID is required to proceed.'
-
 
 # PAGES
 
 class Welcome(Page):
     form_model = 'player'
-    form_fields = ['is_mobile']
+    form_fields = ['is_mobile', 'welcome_button_clicks']
 
 
 class SorryNoPhone(Page):
@@ -67,11 +61,6 @@ class SorryNoPhone(Page):
 class Consent(Page):
     form_model = 'player'
     form_fields = ['consent']
-
-
-class ProlificID(Page):
-    form_model = 'player'
-    form_fields = ['prolific_id']
 
 
 page_sequence = [Welcome, SorryNoPhone, Consent]
