@@ -3,8 +3,9 @@
     <!-- JS for button show/hide instructions - from: https://www.w3schools.com/howto/howto_js_toggle_hide_show.asp -->
     <script>
     var info_button_clicks = 0;
+    console.log("info button clicks: ", info_button_clicks)
 
-    function myFunction() {
+    function info_button() {
         var x = document.getElementById("background");
         if (x.style.display === "none") {
             x.style.display = "block";
@@ -14,6 +15,7 @@
 
         info_button_clicks += 1
         document.getElementById("info_button_clicks").value = info_button_clicks;
+        console.log("info button clicks: ", info_button_clicks)
     }
     </script>
 
@@ -39,7 +41,7 @@
 
         <input type="hidden" name="info_button_clicks" id="info_button_clicks" value="0"/>
 
-        <button type="button" onclick="myFunction()">Show/hide instructions</button>
+        <button type="button" onclick="info_button()">Show/hide instructions</button>
 
         <div style="display:none" id="background">
             <br>
@@ -173,37 +175,32 @@
     <!-- Slider styling -->
     <link href="{{ static 'css/slider.css' }}" rel="stylesheet">
 
-    <!-- Input from slider -->
-    <input type="hidden" id="belief" name="belief" value="" />
+    <!-- Additional inputs -->
+    <input type="hidden" name="minus_button_clicks" id="minus_button_clicks" value="0"/>
+    <input type="hidden" name="plus_button_clicks" id="plus_button_clicks" value="0"/>
 
     <!-- Slider placement -->
-	<table id="dec1">
-		<tr style="height: 85px">
-			<td><span class="input-group-text" id="slidermin"></span></td>
-			<td width="80%">
-				<div id="before" onclick="show_slider(event)"></div>
-				<input type="range" list="tickmarks" name="belief_slider" id="belief_slider" value="0" class="slidertd form-range" oninput="showVal1(this.value)" onchange="showVal1(this.value)">
-                <datalist id="tickmarks">
-                    <option value="0" label="0%"></option>
-                    <option value="10"></option>
-                    <option value="20"></option>
-                    <option value="30"></option>
-                    <option value="40"></option>
-                    <option value="50" label="50%"></option>
-                    <option value="60"></option>
-                    <option value="70"></option>
-                    <option value="80"></option>
-                    <option value="90"></option>
-                    <option value="100" label="100%"></option>
-                </datalist>
-			</td>
-			<td><span class="input-group-text" id="slidermax"></span></td>
+	<table style="width:80%">
+		<tr>
+			<td>
+                <div class="range-box">
+                <div title="Decrease" class="control-minus">-</div>
+                <input id="belief" name="belief" type="range" class="slider2" min="0" max="100" value="50">
+                <span class="legend-min">0</span>
+                <span class="legend-max">100</span>
+                <div title="Increase" class="control-plus">+</div>
+                </div>
+            </td>
 		</tr>
 
 		<tr style="height: 30px">
-			<td id="show_belief" colspan="3" style="text-align: center"><b><span id="cval1"></span></b></td>
+			<td style="text-align: center"><b><span id="show_belief"></span>%</b></td>
 		</tr>
 	</table>
+
+
+
+
 
 
 

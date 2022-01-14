@@ -1,59 +1,61 @@
-// Part 1 of slider:
-//	From: https://gitlab.com/gr0ssmann/otree_slider,
-//	Further explanation (older version): https://www.accountingexperiments.com/post/sliders/
+// JS for slider.
+// Inspired by: https://codepen.io/JavRok/pen/pgJagr
 
-// Added check that slider was touched
 
+// Defining variables
+var range = document.getElementById("belief");
+var minusButton = document.querySelector(".control-minus");
+var plusButton = document.querySelector(".control-plus");
+var steps = 100;
+
+var output = document.getElementById("show_belief");
 var touched = 0;
 
-var slider_min = 0;
-var slider_max = 100;
-var slider_step = 1;
-var oldval = "";
+var minus_button_clicks = 0;
+var plus_button_clicks = 0;
 
-function showVal1(what) {
-    showFloat(document.getElementById("cval1"), what, 0);
-    document.getElementById("belief").value = what;
+console.log("minus button clicks: ", minus_button_clicks);
+console.log("plus button clicks: ", plus_button_clicks);
 
-    oldval = what;
+// All browsers but IE
+range.addEventListener("input", function(evt) {
+  current_value ();
+}, false);
+// IE10
+range.addEventListener("change", function(evt) {
+  current_value ();
+}, false);
+
+// Updating values
+function current_value () {
+  output.innerHTML = range.value;
+  range.className = "slider";
+  touched = 1;
 }
 
+// Plus and minus buttons
+minusButton.addEventListener("click", function() {
+  range.stepDown();
+  current_value ();
 
-function show_slider(event) {
-    max = parseInt(getComputedStyle(document.getElementById("before")).width.replace("px", ""));
-    cur = event.offsetX;
+  minus_button_clicks += 1;
+  document.getElementById("minus_button_clicks").value = minus_button_clicks;
+  console.log("minus button clicks: ", minus_button_clicks);
+
+}, false);
 
 
-    now = (cur/max)*(slider_max-slider_min) + slider_min;
-    now = Math.round(now/slider_step)*slider_step;
+plusButton.addEventListener("click", function() {
+  range.stepUp();
+  current_value ();
 
-    document.getElementById("before").style.display = "none";
-    document.getElementById("belief_slider").style.display = "block";
-    document.getElementById("show_belief").style.color = "#000";
+  plus_button_clicks += 1;
+  document.getElementById("plus_button_clicks").value = plus_button_clicks;
+  console.log("plus button clicks: ", plus_button_clicks);
 
-    showVal1(now);
-    document.getElementById("belief_slider").value = now;
+}, false);
 
-    touched = 1;
-}
 
-function showFloat(el, val, dec = 0) {
-    if (isNaN(val)) {
-        el.innerHTML = "???";
-    }
-    else {
-        el.innerHTML = (parseFloat(val).toFixed(dec) + "%");
-    }
-}
-
-$(document).ready(function (event) {
-    document.getElementById("belief_slider").min = slider_min;
-    document.getElementById("belief_slider").max = slider_max;
-    document.getElementById("belief_slider").step = slider_step;
-
-    showFloat(document.getElementById("slidermin"), slider_min);
-    showFloat(document.getElementById("slidermax"), slider_max);
-});
 
 // on form submission, check that all elements have been moved
 function checkTouched() {

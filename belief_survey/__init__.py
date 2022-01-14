@@ -112,7 +112,8 @@ class Player(BasePlayer):
     sr_button_clicks = models.IntegerField(
         doc='Number of times clicked tell me more button in instructions for scoring rule')
     info_button_clicks = models.IntegerField(doc='Number of times clicked background instruction button')
-
+    minus_button_clicks = models.IntegerField(doc='Number of times clicked on minus button to adjust belief report')
+    plus_button_clicks = models.IntegerField(doc='Number of times clicked on plus button to adjust belief report')
 
 def creating_session(subsession: Subsession):
     # Calculating probabilities given the input parameters
@@ -333,7 +334,7 @@ class UrnDraw(Page):
 
 class BeliefInput(Page):
     form_model = 'player'
-    form_fields = ['belief', 'info_button_clicks']
+    form_fields = ['belief', 'info_button_clicks', 'minus_button_clicks', 'plus_button_clicks']
 
     @staticmethod
     def vars_for_template(player: Player):
