@@ -1,9 +1,9 @@
 
 /*******    Defining color theme   *******/
 :root {
-  --main_color: #00df70;    /* key 13% */
-  --color_hover: #00f279;   /* key 5% */
-  --color_dark: #00a653;    /* key 35% */
+  --main_color: #008040;    /* key 13% */
+  --color_hover: #00994d;   /* key 5% */
+  --color_dark: #004d26;    /* key 35% */
 }
 
 
