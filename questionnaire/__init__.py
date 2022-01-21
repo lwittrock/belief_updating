@@ -180,4 +180,5 @@ class FinalPage(Page):
     pass
 
 
-page_sequence = [Transition, BeliefQuestions, CRT, Demographics, FinalPage]
+#page_sequence = [Transition, BeliefQuestions, CRT, Demographics, FinalPage]
+page_sequence = [FinalPage]

@@ -1,5 +1,5 @@
 {{ block title }}
-    End of Regular Study
+    End of Study
 {{ endblock }}
 {{ block content }}
 
@@ -12,9 +12,13 @@
     <br>
     Your total earnings from this study are: {{ player.participant.payoff_plus_participation_fee }}
 
+    <br><br>
+
+    Clicking the button below will lead you back to Prolific.
+
     <style>
         .next {float: right; margin: 40px auto;}
     </style>
-    <button class="btn btn-primary next">Next</button>
+    <button type="button" class="btn btn-primary next" onclick="location.href='https://www.example.com';">End of Study</button>
 
 {{ endblock }}
